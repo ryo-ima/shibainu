@@ -1,0 +1,22 @@
+- @page_title = "収入科目 データ登録"
+%h2= @page_title
+.toolbar
+  = link_to "収入科目データ一覧に戻る", :income_values
+= form_for(@income_value, url: income_values_path, method: :post) do |f|
+  / 年月テーブル
+  %table
+    %tr
+      %th 登録年月
+      %th 名称
+      %th 値
+      %th 備考
+      %tr
+        %td
+          = f.date_select :year_month,                                       |
+            start_year: 2010, end_year: Time.current.year,                   |
+            use_month_numbers: true, default: @year_month |
+        %th
+          = f.select :title, IncomeValue.titles_i18n.invert
+        %td= f.text_field :value, size: 8
+        %td= f.text_field :description, size: 8
+  %div= f.submit

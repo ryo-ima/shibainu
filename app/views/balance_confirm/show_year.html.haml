@@ -1,0 +1,30 @@
+%h2
+  = @year
+  年 年間収支確認
+%table
+  %thead
+    %tr
+      %th 年月
+      %th 収入合計値
+      %th 支出合計値
+      %th 収支（収入-支出）結果
+  %tbody
+    - month=1
+    - 0.upto(11) do |i|
+      - if @income_value_totals[i].present?
+        %tr
+          %td
+            = @year
+            年#{i+1}月
+          %td
+            = @income_value_totals[i]
+            円
+          %td
+            = @variablecost_value_totals[i]
+            円
+          %td
+            = @balance_differences[i]
+            円
+%canvas#myChart{:height => "400", :width => "400"}
+:javascript
+  draw_graph();

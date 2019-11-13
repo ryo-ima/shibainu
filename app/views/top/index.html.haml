@@ -1,0 +1,14 @@
+.top__index
+  %h1 Shibainu
+  %p シンプルな家計簿アプリです。
+  %h2 収支登録
+  %ul
+    %li
+      = link_to "収入金額登録", :income_values
+  %ul
+    %li
+      = link_to "変動費金額登録", :variablecost_values
+  %h2 収支確認
+  %ul
+    %li
+      = link_to "収支確認画面", balance_confirm_path

@@ -1,0 +1,16 @@
+%h2 収支科目　データ修正
+= form_for @income_value do |form|
+  %table
+    %tr
+      %th 登録日
+      %th 名称
+      %th 値
+      %th 備考
+    %tr
+      %td= form.date_select :year_month,                  |
+          start_year: 2010, end_year: Time.current.year, |
+          use_month_numbers: true     |
+      %th= form.select :title, IncomeValue.titles_i18n.invert
+      %td= form.text_field :value
+      %td= form.text_field :description
+  %div= form.submit

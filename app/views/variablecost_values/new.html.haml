@@ -1,0 +1,21 @@
+- @page_title = "変動費科目 データ登録"
+%h2= @page_title
+.toolbar= link_to "変動費科目データ一覧に戻る", :variablecost_values
+= form_for(@variablecost_value, url: variablecost_values_path, method: :post) do |f|
+  / 年月テーブル
+  %table
+    %tr
+      %th 登録年月
+      %th 名称
+      %th 値
+      %th 備考
+      %tr
+        %td
+          = f.date_select :year_month,                                       |
+            start_year: 2010, end_year: Time.current.year,                   |
+            use_month_numbers: true, default: @year_month |
+        %th
+          = f.select :title, VariablecostValue.titles_i18n.invert
+        %td= f.text_field :value, size: 8
+        %td= f.text_field :description, size: 8
+  %div= f.submit

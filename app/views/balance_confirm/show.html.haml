@@ -1,0 +1,68 @@
+%h2
+  = @year_month
+  月次収支確認
+%h3 収入
+- if @income_values.present?
+  %table
+    %thead
+      %tr
+        %th 科目名
+        %th 値
+        %th 備考
+    %tbody
+      - @income_values.each do |income_value|
+        %tr
+          %td= income_value.title_i18n
+          %td{:style => "text-align: right"}
+            = income_value.value
+            円
+          %td= income_value.description
+      %tr
+        %td
+          %b 収入合計
+        %td{:style => "text-align: right"}
+          %b
+            = @income_value_total
+            円
+        %td
+- else
+  %p 登録されている収入がありません。
+%h3 変動費
+- if @variablecost_values.present?
+  %table
+    %thead
+      %tr
+        %th 科目名
+        %th 値
+        %th 備考
+    %tbody
+      - @variablecost_values.each do |variablecost_value|
+        %tr
+          %td= variablecost_value.title_i18n
+          %td{:style => "text-align: right"}
+            = variablecost_value.value
+            円
+          %td= variablecost_value.description
+      %tr
+        %td
+          %b 変動費合計
+        %td{:style => "text-align: right"}
+          %b
+            = @variablecost_value_total
+            円
+        %td
+  %h3 収支結果
+  %table
+    %tbody
+      %tr
+        %td
+          %b 収支差
+        %td{:style => "text-align: right"}
+          %b
+            = @balance_difference
+            円
+        %td
+  %b
+    収支差：#{@balance_difference} 円
+- else
+  %p 登録されている変動費がありません。

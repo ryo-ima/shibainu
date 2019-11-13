@@ -1,0 +1,29 @@
+- require 'active_support/core_ext/numeric/conversions'
+%h2 変動費科目のデータ登録
+%p 登録年月を設定してください
+= form_tag({controller: :variablecost_values, action: :new}, {method: :post}) do
+  %input{name: "year_month", type: "date"}/
+  %input{type: "submit"}/
+%h2 変動費科目 データ一覧
+- if @variablecost_values.present?
+  %table
+    %tr
+      %th 登録年月
+      %th 名称
+      %th 値
+      %th 備考
+      %th 操作
+    - @variablecost_values.each do |variablecost_value|
+      %tr
+        %td= variablecost_value.year_month.strftime('%Y年%m月%d日')
+        %td= variablecost_value.title_i18n
+        %td
+          = variablecost_value.value.to_s(:delimited)
+          円
+        %td= variablecost_value.description
+        %td
+          = link_to "編集", [:edit, variablecost_value]
+          |
+          \#{link_to "削除", variablecost_value, method: :delete, data: { confirm: "本当に削除しますか？"}}
+- else
+  %p 登録されているデータがありません。

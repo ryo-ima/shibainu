@@ -1,0 +1,11 @@
+ja:
+  enums:
+    income_value:
+      title:
+        salary: "給与"
+        other: "その他"
+    variablecost_value:
+      title:
+        consumption: "消費"
+        waste: "浪費"
+        investment: "投資"
