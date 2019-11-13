@@ -74,7 +74,12 @@ GEM
       xpath (~> 3.2)
     chart-js-rails (0.1.7)
       railties (> 3.1)
+    chartable (0.0.0.3)
+      activesupport (>= 3.0.0)
+      chronic (~> 0.10)
+    chartkick (3.3.0)
     childprocess (3.0.0)
+    chronic (0.10.2)
     coffee-rails (5.0.0)
       coffee-script (>= 2.2.0)
       railties (>= 5.2.0)
@@ -260,6 +265,8 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   chart-js-rails (~> 0.1.4)
+  chartable
+  chartkick
   coffee-rails (~> 5.0.0)
   devise
   enum_help

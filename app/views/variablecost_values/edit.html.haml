@@ -9,7 +9,7 @@
     %tr
       %td= form.date_select :year_month,                  |
           start_year: 2010, end_year: Time.current.year, |
-          use_month_numbers: true, discard_day: true     |
+          use_month_numbers: true     |
       %th= form.select :title, VariablecostValue.titles_i18n.invert
       %td= form.text_field :value
       %td= form.text_field :description

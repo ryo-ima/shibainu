@@ -1,6 +1,7 @@
 class VariablecostValuesController < ApplicationController
 	def index
 		@variablecost_values = VariablecostValue.order(year_month: "ASC")
+		@chart = [['2018-10-1', 10], ['2018-10-02', 20]]
 	end
 
 	def show

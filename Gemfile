@@ -60,3 +60,5 @@ gem 'chart-js-rails', '~> 0.1.4'
 gem 'gon', '~> 6.2.0'
 gem 'coffee-rails', '~> 5.0.0'
 gem 'rails-i18n'
+gem "chartkick"
+gem 'chartable'
