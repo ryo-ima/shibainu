@@ -1,7 +1,8 @@
 class VariablecostValuesController < ApplicationController
 	def index
 		@variablecost_values = VariablecostValue.order(year_month: "ASC")
-		@chart = [['2018-10-1', 10], ['2018-10-02', 20]]
+		piechart
+		@chart = [['消費', @consumptionvalue], ['浪費', @wastevalue], ['投資', @investmentvalue]]
 	end
 
 	def show
@@ -49,5 +50,25 @@ class VariablecostValuesController < ApplicationController
 		@variablecost_value = VariablecostValue.find(params[:id])
 		@variablecost_value.destroy
 		redirect_to :variablecost_values, notice: "データを削除しました。"
+	end
+end
+
+private
+
+def piechart
+	consumptions = VariablecostValue.where(title: 0)
+	wastes = VariablecostValue.where(title: 1)
+	investments = VariablecostValue.where(title: 2)
+	@consumptionvalue = 0
+	@wastevalue = 0
+	@investmentvalue = 0
+	consumptions.each do |consumption|
+		@consumptionvalue += consumption.value
+	end
+	wastes.each do |waste|
+		@wastevalue += waste.value
+	end
+	investments.each do |investment|
+		@investmentvalue += investment.value
 	end
 end

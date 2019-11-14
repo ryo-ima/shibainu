@@ -62,3 +62,4 @@ gem 'coffee-rails', '~> 5.0.0'
 gem 'rails-i18n'
 gem "chartkick"
 gem 'chartable'
+gem 'pry-rails'
