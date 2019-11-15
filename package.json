@@ -6,11 +6,17 @@
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "^4.0.7",
-    "turbolinks": "^5.2.0"
+    "turbolinks": "^5.2.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
   },
   "version": "0.1.0",
   "devDependencies": {
-    "webpack-dev-server": "^3.9.0",
-    "chart.js": "^2.7.1"    
-  }
+    "chart.js": "^2.7.1",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "main": "index.js",
+  "repository": "https://github.com/ryo-ima/shibainu.git",
+  "author": "ryo-ima <i.riino5y@gmail.com>",
+  "license": "MIT"
 }
