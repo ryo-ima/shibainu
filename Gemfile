@@ -68,3 +68,5 @@ gem 'rails-i18n'
 gem "chartkick"
 gem 'chartable'
 gem 'pry-rails'
+gem 'bootstrap', '~> 4.3.1'
+gem 'jquery-rails'
