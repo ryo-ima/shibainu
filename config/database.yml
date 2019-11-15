@@ -49,6 +49,10 @@ test:
 #
 production:
   <<: *default
-  database: shibainu_production
-  username: shibainu
-  password: <%= ENV['SHIBAINU_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  # <<: *default
+  # database: shibainu_production
+  # username: shibainu
+  # password: <%= ENV['SHIBAINU_DATABASE_PASSWORD'] %>
