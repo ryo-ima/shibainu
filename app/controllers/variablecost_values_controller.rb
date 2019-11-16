@@ -1,5 +1,8 @@
 class VariablecostValuesController < ApplicationController
 	before_action :authenticate_user!
+	before_action :set_variablecostvalue, only: [:show, :edit, :update, :destroy]
+	before_action :user?, only: [:show, :edit, :update, :destroy]
+
 	def index
 		@variablecost_values = VariablecostValue.where(user_id: current_user.id,).order(year_month: "ASC")
 		piechart
@@ -7,7 +10,7 @@ class VariablecostValuesController < ApplicationController
 	end
 
 	def show
-		@variablecost_value = VariablecostValue.find(params[:id])
+
 	end
 
 	def new
@@ -19,7 +22,7 @@ class VariablecostValuesController < ApplicationController
 	end
 
 	def edit
-		@variablecost_value = VariablecostValue.find(params[:id])
+
 	end
 
 	def create
@@ -31,15 +34,9 @@ class VariablecostValuesController < ApplicationController
 		end
 	end
 
-	def variablecost_value_params
-		params
-			.require(:variablecost_value)
-			.permit(:title, :value, :description, :year_month)
-			.merge(user_id: current_user.id)
-	end
 
 	def update
-		@variablecost_value = VariablecostValue.find(params[:id])
+
 		@variablecost_value.update(variablecost_value_params)
 		if @variablecost_value.save
 			redirect_to :variablecost_values, notice: "情報を更新しました"
@@ -49,28 +46,44 @@ class VariablecostValuesController < ApplicationController
 	end
 
 	def destroy
-		@variablecost_value = VariablecostValue.find(params[:id])
+
 		@variablecost_value.destroy
 		redirect_to :variablecost_values, notice: "データを削除しました。"
 	end
 end
 
 private
+	def set_variablecostvalue
+		@variablecost_value = VariablecostValue.find(params[:id])
+	end
 
-def piechart
-	consumptions = VariablecostValue.where(user_id: current_user.id, title: 0)
-	wastes = VariablecostValue.where(user_id: current_user.id, title: 1)
-	investments = VariablecostValue.where(user_id: current_user.id, title: 2)
-	@consumptionvalue = 0
-	@wastevalue = 0
-	@investmentvalue = 0
-	consumptions.each do |consumption|
-		@consumptionvalue += consumption.value
+	def user?
+		if @variablecost_value.user_id != current_user.id
+			redirect_to action: "index"
+		end
 	end
-	wastes.each do |waste|
-		@wastevalue += waste.value
+
+	def variablecost_value_params
+		params
+			.require(:variablecost_value)
+			.permit(:title, :value, :description, :year_month)
+			.merge(user_id: current_user.id)
 	end
-	investments.each do |investment|
-		@investmentvalue += investment.value
+
+	def piechart
+		consumptions = VariablecostValue.where(user_id: current_user.id, title: 0)
+		wastes = VariablecostValue.where(user_id: current_user.id, title: 1)
+		investments = VariablecostValue.where(user_id: current_user.id, title: 2)
+		@consumptionvalue = 0
+		@wastevalue = 0
+		@investmentvalue = 0
+		consumptions.each do |consumption|
+			@consumptionvalue += consumption.value
+		end
+		wastes.each do |waste|
+			@wastevalue += waste.value
+		end
+		investments.each do |investment|
+			@investmentvalue += investment.value
 	end
 end

@@ -1,12 +1,14 @@
 class IncomeValuesController < ApplicationController
 	before_action :authenticate_user!
+	before_action :set_incomevalue, only: [:show, :edit, :update, :destroy]
+	before_action :user?, only: [:show, :edit, :update, :destroy]
 
 	def index
 		@income_values = IncomeValue.where(user_id: current_user.id,).order(year_month: "ASC")
 	end
 
 	def show
-		@income_value = IncomeValue.find(params[:id])
+
 	end
 
 	def new
@@ -18,7 +20,7 @@ class IncomeValuesController < ApplicationController
 	end
 
 	def edit
-		@income_value = IncomeValue.find(params[:id])
+
 	end
 
 	def create
@@ -30,15 +32,8 @@ class IncomeValuesController < ApplicationController
 		end
 	end
 
-	def income_value_params
-		params
-			.require(:income_value)
-			.permit(:title, :value, :description, :year_month)
-			.merge(user_id: current_user.id)
-	end
-
 	def update
-		@income_value = IncomeValue.find(params[:id])
+
 		@income_value.update(income_value_params)
 		if @income_value.save
 			redirect_to :income_values, notice: "情報を更新しました"
@@ -48,9 +43,26 @@ class IncomeValuesController < ApplicationController
 	end
 
 	def destroy
-		@income_value = IncomeValue.find(params[:id])
+
 		@income_value.destroy
 		redirect_to :income_values, notice: "データを削除しました。"
 	end
+private
 
+	def set_incomevalue
+		@income_value = IncomeValue.find(params[:id])
+	end
+
+	def user?
+		if @income_value.user_id != current_user.id
+			redirect_to action: "index"
+		end
+	end
+
+	def income_value_params
+		params
+			.require(:income_value)
+			.permit(:title, :value, :description, :year_month)
+			.merge(user_id: current_user.id)
+	end
 end
