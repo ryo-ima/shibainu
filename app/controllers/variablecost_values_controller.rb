@@ -1,6 +1,7 @@
 class VariablecostValuesController < ApplicationController
+	before_action :authenticate_user!
 	def index
-		@variablecost_values = VariablecostValue.order(year_month: "ASC")
+		@variablecost_values = VariablecostValue.where(user_id: current_user.id,).order(year_month: "ASC")
 		piechart
 		@chart = [['消費', @consumptionvalue], ['浪費', @wastevalue], ['投資', @investmentvalue]]
 	end
@@ -34,6 +35,7 @@ class VariablecostValuesController < ApplicationController
 		params
 			.require(:variablecost_value)
 			.permit(:title, :value, :description, :year_month)
+			.merge(user_id: current_user.id)
 	end
 
 	def update
@@ -56,9 +58,9 @@ end
 private
 
 def piechart
-	consumptions = VariablecostValue.where(title: 0)
-	wastes = VariablecostValue.where(title: 1)
-	investments = VariablecostValue.where(title: 2)
+	consumptions = VariablecostValue.where(user_id: current_user.id, title: 0)
+	wastes = VariablecostValue.where(user_id: current_user.id, title: 1)
+	investments = VariablecostValue.where(user_id: current_user.id, title: 2)
 	@consumptionvalue = 0
 	@wastevalue = 0
 	@investmentvalue = 0

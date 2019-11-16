@@ -1,4 +1,5 @@
 class BalanceConfirmController < ApplicationController
+	before_action :authenticate_user!
   def top
   end
 
@@ -6,12 +7,12 @@ class BalanceConfirmController < ApplicationController
     @year_month = params[:year_month] + "-01"
 
     #収入計算
-		@income_values =IncomeValue.where(year_month: @year_month)
+		@income_values =IncomeValue.where(user_id: current_user.id, year_month: @year_month)
 		@income_value_total = cal_income_total(@income_values)
 
 
 		#変動費計算
-		@variablecost_values = VariablecostValue.where(year_month: @year_month)
+		@variablecost_values = VariablecostValue.where(user_id: current_user.id,year_month: @year_month)
 		@variablecost_value_total = cal_variablecost_total(@variablecost_values)
 
 		#収支差

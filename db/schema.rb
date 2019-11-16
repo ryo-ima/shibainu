@@ -17,8 +17,10 @@ ActiveRecord::Schema.define(version: 2019_11_11_014746) do
     t.date "year_month", null: false
     t.integer "value", null: false
     t.string "description"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_income_values_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -38,8 +40,12 @@ ActiveRecord::Schema.define(version: 2019_11_11_014746) do
     t.date "year_month", null: false
     t.integer "value", null: false
     t.string "description"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_variablecost_values_on_user_id"
   end
 
+  add_foreign_key "income_values", "users"
+  add_foreign_key "variablecost_values", "users"
 end

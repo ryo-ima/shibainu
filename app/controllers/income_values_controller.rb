@@ -1,7 +1,8 @@
 class IncomeValuesController < ApplicationController
+	before_action :authenticate_user!
 
 	def index
-		@income_values = IncomeValue.order(year_month: "ASC")
+		@income_values = IncomeValue.where(user_id: current_user.id,).order(year_month: "ASC")
 	end
 
 	def show
@@ -33,6 +34,7 @@ class IncomeValuesController < ApplicationController
 		params
 			.require(:income_value)
 			.permit(:title, :value, :description, :year_month)
+			.merge(user_id: current_user.id)
 	end
 
 	def update
