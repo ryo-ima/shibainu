@@ -15,8 +15,6 @@ class VariablecostValuesController < ApplicationController
 
 	def new
 		@variablecost_value = VariablecostValue.new
-		year_month_day = params[:year_month] + "-01"
-		@year_month = year_month_day.to_date
 
 		# @form = Form::VariablecostForm.new
 	end

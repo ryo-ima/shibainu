@@ -13,8 +13,6 @@ class IncomeValuesController < ApplicationController
 
 	def new
 		@income_value = IncomeValue.new
-		year_month_day = params[:year_month] + "-01"
-		@year_month = year_month_day.to_date
 
 		# @form = Form::IncomeForm.new
 	end

@@ -1,9 +1,6 @@
 - require 'active_support/core_ext/numeric/conversions'
-%h2 収入科目の新規データ登録
-%p 登録年月を設定してください
-= form_tag({controller: :income_values, action: :new}, {method: :post}) do
-  %input{name: "year_month", type: "date"}/
-  %input{type: "submit"}/
+= link_to "収入科目の新規データ登録", new_income_value_path
+
 %h2 収入科目 データ一覧
 - if @income_values.present?
   %table

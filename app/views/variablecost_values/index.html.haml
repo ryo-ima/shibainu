@@ -1,10 +1,6 @@
 - require 'active_support/core_ext/numeric/conversions'
-%h2 変動費科目のデータ登録
-%p 登録年月を設定してください
-= form_tag({controller: :variablecost_values, action: :new}, {method: :post}) do
-  %input{name: "year_month", type: "date"}/
 
-  %input{type: "submit", class:"btn btn-primary"}/
+= link_to "変動費科目のデータ登録", new_variablecost_value_path
 %h2 変動費科目 データ一覧
 - if @variablecost_values.present?
   %table
