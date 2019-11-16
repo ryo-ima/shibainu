@@ -16,7 +16,23 @@
     "webpack-dev-server": "^3.9.0"
   },
   "main": "index.js",
-  "repository": "https://github.com/ryo-ima/shibainu.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryo-ima/shibainu.git"
+  },
   "author": "ryo-ima <i.riino5y@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ryo-ima/shibainu/issues"
+  },
+  "homepage": "https://github.com/ryo-ima/shibainu#readme",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "description": ""
 }
