@@ -12,7 +12,7 @@ class BalanceConfirmController < ApplicationController
 
 
 		#変動費計算
-		@variablecost_values = VariablecostValue.where(user_id: current_user.id,year_month: @year_month)
+		@variablecost_values = VariablecostValue.where(user_id: current_user.id, year_month: @year_month)
 		@variablecost_value_total = cal_variablecost_total(@variablecost_values)
 
 		#収支差

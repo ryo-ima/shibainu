@@ -12,4 +12,5 @@
   %body
     - if flash.notice
       = flash.notice
+    = render "layouts/header.html.haml"
     = yield
