@@ -69,9 +69,9 @@ private
 	end
 
 	def piechart
-		consumptions = VariablecostValue.where(user_id: current_user.id, title: 0)
-		wastes = VariablecostValue.where(user_id: current_user.id, title: 1)
-		investments = VariablecostValue.where(user_id: current_user.id, title: 2)
+		consumptions = VariablecostValue.where(user_id: current_user.id, title: 0, year_month: Time.now.all_month)
+		wastes = VariablecostValue.where(user_id: current_user.id, title: 1, year_month: Time.now.all_month)
+		investments = VariablecostValue.where(user_id: current_user.id, title: 2, year_month: Time.now.all_month)
 		@consumptionvalue = 0
 		@wastevalue = 0
 		@investmentvalue = 0
