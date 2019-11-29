@@ -17,7 +17,8 @@ class BalanceConfirmController < ApplicationController
 
 		#収支差
 		@balance_difference = @income_value_total - @variablecost_value_total
-
+		piechart
+		@chart = [['消費', @consumptionvalue], ['浪費', @wastevalue], ['投資', @investmentvalue]]
 	end
 
 	def show_year

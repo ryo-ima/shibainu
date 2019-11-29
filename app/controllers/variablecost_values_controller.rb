@@ -5,6 +5,7 @@ class VariablecostValuesController < ApplicationController
 
 	def index
 		@variablecost_values = VariablecostValue.where(user_id: current_user.id,).order(year_month: "ASC")
+		@year_month = Time.now.all_month
 		piechart
 		@chart = [['消費', @consumptionvalue], ['浪費', @wastevalue], ['投資', @investmentvalue]]
 	end
@@ -48,7 +49,6 @@ class VariablecostValuesController < ApplicationController
 		@variablecost_value.destroy
 		redirect_to :variablecost_values, notice: "データを削除しました。"
 	end
-end
 
 private
 	def set_variablecostvalue
@@ -68,20 +68,4 @@ private
 			.merge(user_id: current_user.id)
 	end
 
-	def piechart
-		consumptions = VariablecostValue.where(user_id: current_user.id, title: 0, year_month: Time.now.all_month)
-		wastes = VariablecostValue.where(user_id: current_user.id, title: 1, year_month: Time.now.all_month)
-		investments = VariablecostValue.where(user_id: current_user.id, title: 2, year_month: Time.now.all_month)
-		@consumptionvalue = 0
-		@wastevalue = 0
-		@investmentvalue = 0
-		consumptions.each do |consumption|
-			@consumptionvalue += consumption.value
-		end
-		wastes.each do |waste|
-			@wastevalue += waste.value
-		end
-		investments.each do |investment|
-			@investmentvalue += investment.value
-	end
 end
