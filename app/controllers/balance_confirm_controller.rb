@@ -4,7 +4,7 @@ class BalanceConfirmController < ApplicationController
   end
 
   def show
-    @year_month = params[:year_month] + "-01"
+    @year_month = Date.strptime(params[:year_month], '%Y-%m').all_month
 
     #収入計算
 		@income_values =IncomeValue.where(user_id: current_user.id, year_month: @year_month)
