@@ -2,11 +2,11 @@
 = form_tag({controller: :balance_confirm, action: :show}, {method: :post}) do
   %input{:name => "year_month", :type => "month"}/
   %input{:type => "submit"}/
-%h2 年間収支確認
-= form_tag({controller: :balance_confirm, action: :show_year}, {method: :post}) do
-  %input{:name => "year", :type => "hidden"}/
-  %select{:name => "year"}
-    - 2010.upto(2050) do |n|
-      %option{:value => "<haml_loud"}
-        n.to_s &gt;#{n}
-  %input{:type => "submit"}/
+-# %h2 年間収支確認
+-# = form_tag({controller: :balance_confirm, action: :show_year}, {method: :post}) do
+-#   %input{:name => "year", :type => "hidden"}/
+-#   %select{:name => "year"}
+-#     - 2010.upto(2050) do |n|
+-#       %option{:value => "<haml_loud"}
+-#         n.to_s &gt;#{n}
+-#   %input{:type => "submit"}/
