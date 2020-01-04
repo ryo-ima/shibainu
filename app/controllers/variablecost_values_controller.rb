@@ -4,7 +4,7 @@ class VariablecostValuesController < ApplicationController
 	before_action :user?, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@variablecost_values = VariablecostValue.where(user_id: current_user.id,).order(year_month: "ASC")
+		@variablecost_values = VariablecostValue.where(user_id: current_user.id,).order(year_month: "DESC").limit(10)
 		@year_month = Time.now.all_month
 		piechart
 		@chart = [['消費', @consumptionvalue], ['浪費', @wastevalue], ['投資', @investmentvalue]]
